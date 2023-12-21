@@ -1,37 +1,38 @@
-<%@page contentType="text/html; charset=utf-8" %>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<link rel=stylesheet href="<c:url value='../css/main.css' />" type="text/css">
-<title>LIST</title>
-
+    <meta charset="UTF-8">
+    <title>Community List</title>
 </head>
 <body>
-<div class="front-bar">
-                    <nav>
-                        <a class="logo">
-                            <img width="280" height="100"  src="../img/logo.png"/>
-                        </a>
-                        <div class="menu">
-                        <ul>
-                            <li class="sc-76e69317-0 kvRpqN nav-menu">
-                                <a href="../user/myPage.jsp">MY PAGE</a>
-                            </li>
-                            <li class="sc-76e69317-0 kvRpqN nav-menu">
-                                <a href="../friend/find.jsp" >FRIEND</a>
-                            </li>
-                            <li class="sc-76e69317-0 kvRpqN nav-menu">
-                                <a href="list.jsp" style="color: #647B54;">COMMUNITY</a>
-                            </li>
-                            <li class="sc-76e69317-0 kvRpqN nav-menu">
-                                <a href="../map/search.jsp">MAP</a>
-                            </li>
-                        </ul>
-                        </div>
-                    </nav>
-</div>
-
+    <h2>Community List</h2>
+    <c:if test="${empty commList}">
+        <p>No communities found.</p>
+    </c:if>
+    <c:if test="${not empty commList}">
+        <table border="1">
+            <tr>
+                <th>Community Number</th>
+                <th>Title</th>
+                
+                <th>Actions</th>
+            </tr>
+            <c:forEach var="community" items="${commList}">
+                <tr>
+                    <td>${community.comm_num}</td>
+                    <td>${community.comm_title}</td>
+                 
+                    <td>
+                        <a href="/community/view">View</a>
+                        <a href="/community/update">Update</a>
+                        
+                    </td>
+                </tr>
+            </c:forEach>
+        </table>
+    </c:if>
+    <p><a href="<c:url value='/community/create/form' />">Create Community</a></p>
 </body>
 </html>

@@ -18,25 +18,28 @@ public class UpdateCommunityController implements Controller {
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response)	throws Exception {
  
-		int commId = Integer.parseInt(request.getParameter("commId"));
+		int comm_num = Integer.parseInt(request.getParameter("comm_num"));
 		
 		if (request.getMethod().equals("GET")) {	
     		// GET request: 커뮤니티 수정 form 요청	
     		UserManager manager = UserManager.getInstance();
-			CommunityDto comm = manager.findCommunity(commId);	// 수정하려는 커뮤니티 정보 검색
+    		CommunityDto comm = manager.findCommunity(comm_num);	// 수정하려는 커뮤니티 정보 검색
 			request.setAttribute("community", comm);			
 			
-			List<UserDto> members = manager.findCommunityMembers(commId); // 커뮤니티 회원 리스트 검색
+			List<UserDto> members = manager.findCommunityMembers(comm_num); // 커뮤니티 회원 리스트 검색
 			request.setAttribute("members", members);		
 			return "/community/updateForm.jsp";   // 검색한 정보를 update form으로 전송     
 	    }	
     	
     	// POST request (커뮤니티 정보가 parameter로 전송됨)
-    	CommunityDto comm = new CommunityDto(
-    		commId,
-    		request.getParameter("name"),
-    		request.getParameter("desc"),
-    		null, request.getParameter("chairId"), null);
+		CommunityDto comm = new CommunityDto(
+				comm_num,
+	    		request.getParameter("comm_title"),
+				request.getParameter("comm_text"),
+				request.getParameter("comm_date"),
+				Integer.parseInt(request.getParameter("comm_memberlimit")),
+				request.getParameter("comm_leader")
+				);
 
     	log.debug("Update Community : {}", comm);
 

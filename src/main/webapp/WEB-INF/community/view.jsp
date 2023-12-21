@@ -1,37 +1,30 @@
-<%@page contentType="text/html; charset=utf-8" %>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<link rel=stylesheet href="<c:url value='../css/main.css' />" type="text/css">
-<title>VIEW</title>
-
+    <meta charset="UTF-8">
+    <title>View Community</title>
 </head>
 <body>
-<div class="front-bar">
-                    <nav>
-                        <a class="logo">
-                            <img width="280" height="100"  src="../img/logo.png"/>
-                        </a>
-                        <div class="menu">
-                        <ul>
-                            <li class="sc-76e69317-0 kvRpqN nav-menu">
-                                <a href="../user/myPage.jsp">MY PAGE</a>
-                            </li>
-                            <li class="sc-76e69317-0 kvRpqN nav-menu">
-                                <a href="../friend/find.jsp" >FRIEND</a>
-                            </li>
-                            <li class="sc-76e69317-0 kvRpqN nav-menu">
-                                <a href="list.jsp" style="color: #647B54;">COMMUNITY</a>
-                            </li>
-                            <li class="sc-76e69317-0 kvRpqN nav-menu">
-                                <a href="../map/search.jsp">MAP</a>
-                            </li>
-                        </ul>
-                        </div>
-                    </nav>
-</div>
-
+    <h2>View Community</h2>
+    <table border="1">
+        <tr>
+            <th>Community Number</th>
+            <th>Title</th>
+            <th>Text</th>
+            <th>Date</th>
+            <th>Member Limit</th>
+            <th>Leader</th>
+        </tr>
+        <tr>
+            <td>${community.comm_num}</td>
+            <td>${community.comm_title}</td>
+            <td>${community.comm_text}</td>
+            <td>${community.comm_date}</td>
+            <td>${community.comm_memberLimit}</td>
+            <td>${community.comm_leader}</td>
+        </tr>
+    </table>
+    <p><a href="<c:url value='/community/list/form' />">Back to Community List</a></p>
 </body>
 </html>

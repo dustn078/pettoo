@@ -7,6 +7,8 @@ import org.slf4j.LoggerFactory;
 
 import controller.Controller;
 import model.dao.CommunityDAO;
+import model.CommunityDto;
+import model.service.UserManager;
 
 public class CreateCommunityController implements Controller {
     private static final Logger log = LoggerFactory.getLogger(CreateCommunityController.class);
@@ -14,9 +16,13 @@ public class CreateCommunityController implements Controller {
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
     	CommunityDto comm = new CommunityDto(
-    		0, request.getParameter("name"),
-			request.getParameter("desc"),
-			null, null, null);		
+    		Integer.parseInt(request.getParameter("comm_num")),
+    		request.getParameter("comm_title"),
+			request.getParameter("comm_text"),
+			request.getParameter("comm_date"),
+			 Integer.parseInt(request.getParameter("comm_memberlimit")),
+			request.getParameter("comm_leader")
+    			);		
         
 		try {
 			UserManager manager = UserManager.getInstance();

@@ -50,6 +50,12 @@ public class RequestMapping {
         mappings.put("/community/create", new CreateCommunityController());
         mappings.put("/community/update", new UpdateCommunityController());
         
+        mappings.put("/community/create/form", new ForwardController("/community/createForm.jsp"));
+        mappings.put("/community/update/form", new ForwardController("/community/updateForm.jsp"));
+        mappings.put("/community/list/form", new ForwardController("/community/list.jsp"));
+        mappings.put("/community/view/form", new ForwardController("/community/view.jsp"));
+        mappings.put("/community/check", new ForwardController("/community/check.jsp"));
+        
         // 즐겨찾기 관련 request URI 추가
         mappings.put("/map/search", new SearchController());
         
